@@ -9,4 +9,3 @@ INSERT INTO distacours.user (id, created_at, updated_at, account_non_expired, ac
 INSERT INTO distacours.user_role (user_id, role_id) VALUES (4, 3);
 INSERT INTO distacours.user_role (user_id, role_id) VALUES (4, 2);
 INSERT INTO distacours.user_role (user_id, role_id) VALUES (4, 1);
-INSERT INTO distacours.user_role (user_id, role_id) VALUES (1, 6);
