@@ -8,7 +8,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class Beans {
 	@Bean
-	public PasswordEncoder passwordEncoder(){
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public AntMatchersHolder antMatchersHolder() {
+		return new AntMatchersHolder();
 	}
 }

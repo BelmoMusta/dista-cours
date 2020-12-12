@@ -1,5 +1,6 @@
 package com.dista.cours.security.jwt;
 
+import com.dista.cours.AntMatchersHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,8 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtRequestFilter jwtRequestFilter;
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	@Autowired
+	private AntMatchersHolder antMatchersHolder;
 	
 	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder authBuilder) throws Exception {
@@ -44,11 +47,13 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
+		String[] permitedRoutes = {"/api/authenticate", "/api/logout", "/api/user/activate/**", "/api/user/register"};
+		antMatchersHolder.add(permitedRoutes);
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
 				.antMatcher("/api/**")
 				.authorizeRequests()
-				.antMatchers("/api/authenticate","/api/logout","/api/user/activate/**","/api/user/register")
+				.antMatchers(permitedRoutes)
 				.permitAll().// all other requests need to be authenticated
 						anyRequest().authenticated().and().
 				// make sure we use stateless session; session won't be used to

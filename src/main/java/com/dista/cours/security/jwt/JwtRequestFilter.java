@@ -1,5 +1,6 @@
 package com.dista.cours.security.jwt;
 
+import com.dista.cours.AntMatchersHolder;
 import com.dista.cours.exception.AuthenticationException;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	@Autowired
 	@Qualifier("handlerExceptionResolver")
 	private HandlerExceptionResolver handlerExceptionResolver;
-	
+	@Autowired
+	private AntMatchersHolder antMatchersHolder;
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-		if(isLogout(request)){
+		if(isPermittedRoute(request)){
 			filterChain.doFilter(request, response);
 			return;
 		}
@@ -63,8 +65,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		}
 	}
 	
-	private boolean isLogout(HttpServletRequest request) {
-		return request.getRequestURI().equals("/api/logout");
+	private boolean isPermittedRoute(HttpServletRequest request) {
+		return  antMatchersHolder.isPermittedRoute( request.getRequestURI());
 	}
 	
 	private String getUsername(String jwtToken) {
