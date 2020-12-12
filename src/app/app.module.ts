@@ -20,6 +20,7 @@ import {TableElementComponent} from './components/table-element/table-element.co
 import {PostCardComponent} from './components/post/post-card/post-card.component';
 import {TagComponent} from './components/tag/tag.component';
 import {JwtInterceptor} from './service/auth/jwt.interceptor';
+import {StudentComponent} from './components/student/student.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {JwtInterceptor} from './service/auth/jwt.interceptor';
 
     NavbarComponent,
     HomeComponent,
+    StudentComponent,
     FooterComponent,
     PostComponent,
     LoginComponent,

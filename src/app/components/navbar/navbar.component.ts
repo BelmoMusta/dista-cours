@@ -27,4 +27,10 @@ export class NavbarComponent implements OnInit {
     this.authenticated = false;
   }
 
+  mySpace() {
+
+    return this.router.navigate(['/student']);
+
+  }
+
 }
