@@ -1,0 +1,30 @@
+<div class="col-md-6 offset-md-3 col-lg-4">
+  <div class="card">
+    <h4 class="card-header">Create new post</h4>
+    <div class="card-body">
+      <form [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
+        <div class="form-group" formGroupName="post">
+          <label for="post-name">Name</label>
+
+          <input id="post-name" type="text" formControlName="name"
+                 class="form-control" [ngClass]="{'is-invalid': false }"/>
+        </div>
+
+        <label for="file">Choose File</label>
+        <input type="file"
+               id="file"
+               (change)="handleFileInput($event.target.files)">
+
+        <button [disabled]="loading" class="btn btn-primary pull-right">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          CREATE
+        </button>
+      </form>
+
+      <button type="button" (click)="fileInput.click()">
+        <span>Upload</span>
+        <input #fileInput type="file" (change)="handleFileInput($event.target.files)" style="display:none;" />
+      </button>
+    </div>
+  </div>
+</div>

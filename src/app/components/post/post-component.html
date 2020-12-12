@@ -1,0 +1,13 @@
+<section>
+  <button class="nav-link text-primary font-weight-bold text-uppercase px-3"
+          routerLink="/posts/create">New Post
+  </button>
+
+  <div>
+    <span *ngIf="loading" class="spinner-border spinner-border-md mr-1"></span>
+  </div>
+<div *ngFor="let post of posts">
+<app-post-card [post]="post"></app-post-card>
+</div>
+
+</section>
