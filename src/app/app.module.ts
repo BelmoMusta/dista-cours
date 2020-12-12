@@ -13,13 +13,13 @@ import {PostComponent} from './components/post/post.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './components/login/login.component';
 import {ErrorInterceptor} from './service/basic.error.interceptor';
-import {BasicAuthInterceptor} from './service/auth/basic.auth.interceptor';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { CreatePostComponent } from './components/post/create-post/create-post.component';
-import { ShowPostComponent } from './components/post/show-post/show-post.component';
-import { TableElementComponent } from './components/table-element/table-element.component';
-import { PostCardComponent } from './components/post/post-card/post-card.component';
-import { TagComponent } from './components/tag/tag.component';
+import {CreatePostComponent} from './components/post/create-post/create-post.component';
+import {ShowPostComponent} from './components/post/show-post/show-post.component';
+import {TableElementComponent} from './components/table-element/table-element.component';
+import {PostCardComponent} from './components/post/post-card/post-card.component';
+import {TagComponent} from './components/tag/tag.component';
+import {JwtInterceptor} from './service/auth/jwt.interceptor';
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import { TagComponent } from './components/tag/tag.component';
     HttpClientModule
 
   ],
-  providers: [HttpClient, {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+  providers: [HttpClient, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

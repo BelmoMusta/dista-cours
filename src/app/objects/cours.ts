@@ -1,4 +1,4 @@
-export class Post {
+export class Cours {
   id: number;
   content: string;
   tags: any[];

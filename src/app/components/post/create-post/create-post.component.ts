@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DataService} from '../../../service/DataService';
 import {Router} from '@angular/router';
-import {Post} from '../../../objects/post';
+import {Cours} from '../../../objects/cours';
 
 @Component({
   selector: 'app-create-post',
@@ -13,14 +13,14 @@ export class CreatePostComponent implements OnInit {
   fileToUpload: File = null;
   createPostForm: FormGroup;
   loading = false;
-  post: Post;
+  post: Cours;
   name = new FormControl('');
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.post = new Post();
+    this.post = new Cours();
 
     this.createPostForm = this.formBuilder.group({
       post: this.formBuilder.group({
@@ -34,7 +34,7 @@ export class CreatePostComponent implements OnInit {
       return;
     }
     this.post = this.createPostForm.value.post;
-    this.dataService.create(this.post).subscribe((data: Post) => {
+    this.dataService.create(this.post).subscribe((data: Cours) => {
       this.router.navigate(['/posts']);
     });
 

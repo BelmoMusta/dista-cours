@@ -26,11 +26,12 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post <any>(`${environment.apiUrl}/user/login`, {username, password})
+    return this.http.post <any>(`${environment.apiUrl}/api/authenticate`, {username, password})
       .pipe(map(user => {
         // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
         user.authdata = window.btoa(username + ':' + password);
         localStorage.setItem('currentUser', JSON.stringify(user));
+        console.log("user", user);
         this.currentUserSubject.next(user);
         this.authenticated = true;
         return user;
@@ -38,7 +39,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.http.post <any>(`${environment.apiUrl}/user/logout`, {})
+    this.http.post <any>(`${environment.apiUrl}/api/logout`, {})
       .subscribe(content => {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {DataService} from '../../../service/DataService';
-import {Post} from '../../../objects/post';
+import {Cours} from '../../../objects/cours';
 
 @Component({
   selector: 'app-show-post',
@@ -10,7 +10,7 @@ import {Post} from '../../../objects/post';
 })
 export class ShowPostComponent implements OnInit {
 
-  post: Post;
+  post: Cours;
 
   constructor(private route: ActivatedRoute, private service: DataService) {
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../service/DataService';
-import {Post} from '../../objects/post';
+import {Cours} from '../../objects/cours';
 
 @Component({
   selector: 'app-post',
@@ -12,7 +12,7 @@ export class PostComponent implements OnInit {
   constructor(private dataService: DataService) {
   }
 
-  posts: Post[];
+  posts: Cours[];
   loading = true;
 
   ngOnInit(): void {

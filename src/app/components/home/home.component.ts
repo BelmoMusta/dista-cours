@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 import {DataService} from '../../service/DataService';
-import {Post} from '../../objects/post';
+import {Cours} from '../../objects/cours';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import {Post} from '../../objects/post';
 })
 export class HomeComponent implements OnInit {
   loading = false;
-  posts: Post[];
+  posts: Cours[];
 
 
   constructor(private dataService: DataService) {
