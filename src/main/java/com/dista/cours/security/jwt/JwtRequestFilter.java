@@ -31,6 +31,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+		if(isLogout(request)){
+			filterChain.doFilter(request, response);
+			return;
+		}
 		final String requestTokenHeader = request.getHeader("Authorization");
 		String username = null;
 		String jwtToken = null;
@@ -57,6 +61,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		if (doFilterChain) {
 			filterChain.doFilter(request, response);
 		}
+	}
+	
+	private boolean isLogout(HttpServletRequest request) {
+		return request.getRequestURI().equals("/api/logout");
 	}
 	
 	private String getUsername(String jwtToken) {
