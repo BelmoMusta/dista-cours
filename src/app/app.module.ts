@@ -21,6 +21,8 @@ import {PostCardComponent} from './components/post/post-card/post-card.component
 import {TagComponent} from './components/tag/tag.component';
 import {JwtInterceptor} from './service/auth/jwt.interceptor';
 import {StudentComponent} from './components/student/student.component';
+import {InscriptionComponent} from './components/inscription/inscription.component';
+import {ActivationComponent} from "./components/activation/activation.component";
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import {StudentComponent} from './components/student/student.component';
 
     NavbarComponent,
     HomeComponent,
+    InscriptionComponent,
+    ActivationComponent,
     StudentComponent,
     FooterComponent,
     PostComponent,

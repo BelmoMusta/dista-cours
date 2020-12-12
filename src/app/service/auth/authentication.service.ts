@@ -31,7 +31,7 @@ export class AuthenticationService {
         // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
         user.authdata = window.btoa(username + ':' + password);
         localStorage.setItem('currentUser', JSON.stringify(user));
-        console.log("user", user);
+        console.log('user', user);
         this.currentUserSubject.next(user);
         this.authenticated = true;
         return user;
@@ -45,8 +45,25 @@ export class AuthenticationService {
         this.currentUserSubject.next(null);
         this.authenticated = false;
         return this.router.navigate(['/login']);
+      }, error => {
+
       });
 
   }
 
+  register(username: string, password) {
+    return this.http.post <any>(`${environment.apiUrl}/api/user/register`, {email: username, password})
+      .pipe(map(content => {
+        return true;
+      }));
+
+  }
+
+  activate(code: string) {
+    return this.http.get <any>(`${environment.apiUrl}/api/user/activate/${code}`)
+      .pipe(map(content => {
+        return true;
+      }));
+
+  }
 }
