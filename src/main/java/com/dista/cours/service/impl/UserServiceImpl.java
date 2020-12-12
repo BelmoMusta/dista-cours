@@ -1,16 +1,14 @@
 package com.dista.cours.service.impl;
 
-import com.dista.cours.entite.dto.RoleDTO;
-import com.dista.cours.entite.dto.UserDTO;
-import com.dista.cours.service.RoleService;
 import com.dista.cours.entite.Role;
 import com.dista.cours.entite.User;
 import com.dista.cours.entite.UserActivation;
-import com.dista.cours.entite.dto.CustomizedValueDTO;
+import com.dista.cours.entite.dto.RoleDTO;
+import com.dista.cours.entite.dto.UserDTO;
 import com.dista.cours.entite.dto.UserRoleDTO;
 import com.dista.cours.exception.NotFoundException;
 import com.dista.cours.repository.UserRepository;
-import com.dista.cours.service.CustomizedValueService;
+import com.dista.cours.service.RoleService;
 import com.dista.cours.service.UserActivationService;
 import com.dista.cours.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +35,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserActivationService userActivationService;
-	
-	@Autowired
-	private CustomizedValueService customizedValueService;
 	
 	@Override
 	public User loadUserByUsernameOrEmail(String username) {
@@ -115,18 +110,6 @@ public class UserServiceImpl implements UserService {
 			userRepository.saveAndFlush(user);
 		}
 	}
-	
-	@Override
-	public List<CustomizedValueDTO> customizedProperties(Long id) {
-		return customizedValueService.findFor("user", id);
-	}
-	
-	@Override
-	public void assignCustomizedValue(Long id, CustomizedValueDTO customizedValueDTO) {
-		
-		customizedValueService.createFor(id, "user", customizedValueDTO);
-	}
-	
 	@Override
 	public List<RoleDTO> roles(Long id) {
 		Set<Role> roles = userRepository.findById(id)
