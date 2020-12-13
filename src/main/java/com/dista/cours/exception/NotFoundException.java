@@ -1,5 +1,7 @@
 package com.dista.cours.exception;
 
+import com.dista.cours.i18n.MessageProvider;
+import com.dista.cours.i18n.MessagesKeys;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -21,7 +23,8 @@ public class NotFoundException extends RuntimeException {
 	
 	@Override
 	public String getMessage() {
-		
-		return String.format("The resource '%s' identified by '%s' is not found ", resourceName, id);
+		return MessageProvider.get().getMessage(MessagesKeys.RESOURCE_NOT_FOUND.getValue(),
+				resourceName,
+				id);
 	}
 }
