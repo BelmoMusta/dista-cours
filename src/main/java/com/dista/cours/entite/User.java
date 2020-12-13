@@ -16,6 +16,8 @@ import java.util.Set;
 @Getter
 @Setter
 public class User extends AbstractEntity implements UserDetails {
+	private String name;
+	private String lastName;
 	private String username;
 	private String email;
 	private String password;
