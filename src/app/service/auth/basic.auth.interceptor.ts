@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import permittedRoutes from './permitted';
 
 import {AuthenticationService} from 'src/app/service/auth/authentication.service';
 

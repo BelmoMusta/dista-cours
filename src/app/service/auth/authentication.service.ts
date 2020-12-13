@@ -51,8 +51,9 @@ export class AuthenticationService {
 
   }
 
-  register(username: string, password) {
-    return this.http.post <any>(`${environment.apiUrl}/api/user/register`, {email: username, password})
+  register(name, lastName, username, password) {
+    return this.http.post <any>(`${environment.apiUrl}/api/user/register`,
+      {email: username, password, name, lastName})
       .pipe(map(content => {
         return true;
       }));
@@ -60,7 +61,7 @@ export class AuthenticationService {
   }
 
   activate(code: string) {
-    return this.http.get <any>(`${environment.apiUrl}/api/user/activate/${code}`)
+    return this.http.post <any>(`${environment.apiUrl}/api/user/activate`, code)
       .pipe(map(content => {
         return true;
       }));

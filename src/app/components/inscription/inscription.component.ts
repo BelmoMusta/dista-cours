@@ -24,13 +24,15 @@ export class InscriptionComponent implements OnInit {
   ngOnInit(): void {
     this.inscriptionForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      name: ['', Validators.required],
+      lastName: ['', Validators.required]
     });
 
   }
 
   onSubmit() {
-    this.authenticationService.register(this.f.username.value, this.f.password.value)
+    this.authenticationService.register(this.f.name.value, this.f.lastName.value, this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(data => {
         this.router.navigate(['/activate']);

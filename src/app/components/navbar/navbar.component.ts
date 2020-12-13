@@ -9,8 +9,6 @@ import {AuthenticationService} from '../../service/auth/authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
-  authenticated: boolean;
-
   constructor(
     private router: Router,
     public authenticationService: AuthenticationService) {
@@ -19,16 +17,26 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authenticated = this.authenticationService.authenticated;
   }
+
+  get authenticated(): boolean {
+    return this.authenticationService.authenticated;
+  }
+
+  get connectedUser() {
+    return (this.authenticationService.currentUserValue);
+  }
+
+  get fullName() {
+    return (this.authenticationService.currentUserValue.name + ' ' + this.connectedUser.lastName);
+  }
+
 
   logout() {
     this.authenticationService.logout();
-    this.authenticated = false;
   }
 
   mySpace() {
-
     return this.router.navigate(['/student']);
 
   }

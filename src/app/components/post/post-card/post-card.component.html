@@ -1,14 +1,12 @@
 <div class="post-card col-md-6 offset-md-3 col-lg-4">
 
   <div class="card">
-    <h6 class="card-header">{{post.user?.email}} {{post.createdAt}}</h6>
+    <h6 class="card-header">{{post.title}} {{post.createdAt}}</h6>
     <div class="card-body">
-      {{post.content}}
+     description
     </div>
     <div class="card-footer">
-      <ul *ngFor="let tag of post.tags">
-        <app-tag [tagName]="tag.label"></app-tag>
-      </ul>
+
     </div>
   </div>
 </div>

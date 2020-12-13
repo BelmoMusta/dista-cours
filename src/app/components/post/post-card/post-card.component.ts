@@ -9,7 +9,7 @@ import {Cours} from '../../../objects/cours';
 export class PostCardComponent implements OnInit {
 
   @Input()
-  post: Cours;
+  post: any;
 
   constructor() {
   }

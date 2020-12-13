@@ -16,7 +16,6 @@ export class PostComponent implements OnInit {
   loading = true;
 
   ngOnInit(): void {
-
     this.dataService.getAllPosts().subscribe((data: any[]) => {
       this.posts = data;
       this.loading = false;

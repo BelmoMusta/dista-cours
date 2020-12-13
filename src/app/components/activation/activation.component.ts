@@ -31,7 +31,8 @@ export class ActivationComponent implements OnInit {
     this.authenticationService.activate(this.f.activationCode.value)
       .pipe(first())
       .subscribe(data => {
-        this.router.navigate(['/activate']);
+        console.log('data', data);
+        this.router.navigate(['/login']);
       }, error => {
         this.error = error;
         this.loading = false;

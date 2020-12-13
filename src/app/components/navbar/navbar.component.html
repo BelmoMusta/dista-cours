@@ -13,24 +13,27 @@
            [routerLinkActiveOptions]="{exact:true}">Accueil </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="connectedUser">
         <a class="nav-link text-primary font-weight-bold text-uppercase px-3" routerLink="/posts"
            routerLinkActive="active">Cours</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item"  *ngIf="!connectedUser">
         <a class="nav-link text-primary font-weight-bold text-uppercase px-3" routerLink="/inscription"
            routerLinkActive="active">Inscription</a>
       </li>
 
       <li class="nav-item">
 
-        <button class="nav-link text-primary font-weight-bold text-uppercase px-3"
+        <button *ngIf="connectedUser" class="nav-link text-primary font-weight-bold text-uppercase px-3"
             (click)="mySpace()">Mon espace</button>
-      </li> <li class="nav-item">
+      </li>
+      <li class="nav-item">
 
-        <button class="nav-link text-primary font-weight-bold text-uppercase px-3"
+        <button *ngIf="connectedUser" class="nav-link text-primary font-weight-bold text-uppercase px-3"
             (click)="logout()">Déconnexion</button>
       </li>
+
+
     </ul>
   </div>
 </nav>

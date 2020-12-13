@@ -1,9 +1,9 @@
 export class User {
   id: number;
   username: string;
+  email: string;
   password: string;
-  firstName: string;
+  name: string;
   lastName: string;
-  authdata?: string;
   jwttoken?: string;
 }

@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this.authenticationService.authenticated = true;
           this.router.navigate([this.next]);
         },
         error => {
