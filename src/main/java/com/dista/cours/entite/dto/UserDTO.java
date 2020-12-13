@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Setter
 public class UserDTO implements Serializable {
 	private String username;
+	private String name;
+	private String lastName;
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	private String email;

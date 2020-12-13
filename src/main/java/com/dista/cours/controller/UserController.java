@@ -33,8 +33,8 @@ public class UserController {
 		userService.createUser(userRequest);
 	}
 	
-	@GetMapping("/activate/{token}")
-	public void activate(@PathVariable String token) {
+	@PostMapping("/activate")
+	public void activate(@RequestBody String token) {
 		userService.activate(token);
 	}
 	@GetMapping("/{id}/roles")

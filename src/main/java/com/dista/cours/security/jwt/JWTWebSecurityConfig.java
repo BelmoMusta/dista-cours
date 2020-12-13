@@ -47,7 +47,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// We don't need CSRF for this example
-		String[] permitedRoutes = {"/api/authenticate", "/api/logout", "/api/user/activate/**", "/api/user/register"};
+		String[] permitedRoutes = {"/api/authenticate", "/api/logout", "/api/user/activate", "/api/user/register"};
 		antMatchersHolder.add(permitedRoutes);
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request

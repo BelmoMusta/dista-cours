@@ -47,6 +47,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void createUser(UserDTO userRequest) {
 		final User user = new User();
+		user.setName(userRequest.getName());
+		user.setLastName(userRequest.getLastName());
 		user.setUsername(userRequest.getUsername());
 		user.setEmail(userRequest.getEmail());
 		user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
