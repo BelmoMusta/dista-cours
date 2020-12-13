@@ -32,7 +32,9 @@ public class JwtAuthenticationService {
 			final JwtResponse jwtResponse = new JwtResponse(token);
 			final UserDTO authUserDTO = new UserDTO();
 			authUserDTO.setEmail(userDetails.getEmail());
-			authUserDTO.setUsername(userDetails.getUsername());
+			authUserDTO.setName(userDetails.getName());
+			authUserDTO.setLastName(userDetails.getLastName());
+			authUserDTO.setUsername(userDetails.getUsername()); // use a mapper
 			jwtResponse.setUser(authUserDTO);
 			return jwtResponse;
 			

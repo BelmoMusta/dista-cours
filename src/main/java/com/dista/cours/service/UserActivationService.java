@@ -8,4 +8,6 @@ public interface UserActivationService {
 	UserActivation findbyToken(String token);
 	
 	void createActivationForUser(User user);
+	
+	void delete(UserActivation activation);
 }
