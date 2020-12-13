@@ -72,6 +72,7 @@ public class UserServiceImpl implements UserService {
 			user.setEnabled(true);
 			userRepository.saveAndFlush(user);
 			activation.setConsumed(true);
+			userActivationService.delete(activation);
 		}
 	}
 	

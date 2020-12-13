@@ -42,4 +42,9 @@ public class UserActivationServiceImpl implements UserActivationService {
 		mailingService.sendEmail(activation);
 		
 	}
+	
+	@Override
+	public void delete(UserActivation activation) {
+		userActivationRepository.delete(activation);
+	}
 }
