@@ -1,6 +1,8 @@
 package com.dista.cours.security.jwt;
 
 import com.dista.cours.exception.AuthenticationException;
+import com.dista.cours.i18n.MessageProvider;
+import com.dista.cours.i18n.MessagesKeys;
 import com.dista.cours.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +20,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if (user != null) {
 			return user;
 		} else {
-			throw new AuthenticationException("User not found with username: " + username);
+			throw new AuthenticationException(MessageProvider.get().getMessage(MessagesKeys.AUTH_USER_NOT_FOUND.getValue(), username));
 		}
 	}
 }

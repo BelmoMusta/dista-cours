@@ -3,7 +3,10 @@ package com.dista.cours.security.jwt;
 import com.dista.cours.entite.User;
 import com.dista.cours.entite.dto.UserDTO;
 import com.dista.cours.exception.AuthenticationException;
+import com.dista.cours.i18n.MessageProvider;
+import com.dista.cours.i18n.MessagesKeys;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -39,10 +42,11 @@ public class JwtAuthenticationService {
 			return jwtResponse;
 			
 		} catch (DisabledException e) {
-			throw new AuthenticationException(String.format("the user %s is disabled",
-					authenticationRequest.getUsername()));
+			String message = MessageProvider.get().getMessage(MessagesKeys.AUTH_USER_DISABLED.getValue(),
+					authenticationRequest.getUsername());
+			throw new AuthenticationException(message);
 		} catch (BadCredentialsException e) {
-			throw new AuthenticationException("password and/or username are incorrect");
+			throw new AuthenticationException(MessagesKeys.AUTH_USER_OR_PASSWORD_INCORRECT.getValue());
 		}
 	}
 }

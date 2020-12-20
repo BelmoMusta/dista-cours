@@ -2,6 +2,7 @@ package com.dista.cours.security.jwt;
 
 import com.dista.cours.AntMatchersHolder;
 import com.dista.cours.exception.AuthenticationException;
+import com.dista.cours.i18n.MessagesKeys;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,16 +32,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	private HandlerExceptionResolver handlerExceptionResolver;
 	@Autowired
 	private AntMatchersHolder antMatchersHolder;
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-		if(isPermittedRoute(request)){
+		if (isPermittedRoute(request)) {
 			filterChain.doFilter(request, response);
 			return;
 		}
 		final String requestTokenHeader = request.getHeader("Authorization");
 		String username = null;
 		String jwtToken = null;
-		boolean doFilterChain  = true;
+		boolean doFilterChain = true;
 		try {
 			if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 				jwtToken = requestTokenHeader.substring(7);
@@ -66,7 +68,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	}
 	
 	private boolean isPermittedRoute(HttpServletRequest request) {
-		return  antMatchersHolder.isPermittedRoute( request.getRequestURI());
+		return antMatchersHolder.isPermittedRoute(request.getRequestURI());
 	}
 	
 	private String getUsername(String jwtToken) {
@@ -74,9 +76,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		try {
 			username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 		} catch (IllegalArgumentException ex) {
-			throw new AuthenticationException("invalide JWT token");
+			throw new AuthenticationException(MessagesKeys.INVALIDE_JWT_TOKEN.getValue());
 		} catch (ExpiredJwtException expiredException) {
-			throw new AuthenticationException("JWT token expired");
+			throw new AuthenticationException(MessagesKeys.JWT_TOKEN_EXPIRED.getValue());
 		}
 		return username;
 	}
