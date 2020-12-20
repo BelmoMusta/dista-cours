@@ -20,7 +20,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 		if (user != null) {
 			return user;
 		} else {
-			throw new AuthenticationException(MessageProvider.get().getMessage(MessagesKeys.AUTH_USER_NOT_FOUND.getValue(), username));
+			throw new AuthenticationException(MessagesKeys.AUTH_USER_NOT_FOUND.getValue(), username);
 		}
 	}
 }
