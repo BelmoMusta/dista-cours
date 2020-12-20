@@ -15,12 +15,13 @@ public class AuthenticationException extends RuntimeException {
 		this.reason = reason;
 	}
 	public AuthenticationException(String reason, String message) {
+		super(message);
 		this.reason = reason;
 	}
 	
 	@Override
 	public String getMessage() {
 		return MessageProvider.get().getMessage(MessagesKeys.AUTH_ERROR.getValue(),
-				MessageProvider.get().getMessage(reason));
+				MessageProvider.get().getMessage(reason, super.getMessage()));
 	}
 }

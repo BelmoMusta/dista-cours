@@ -5,6 +5,7 @@ import com.dista.cours.exception.NotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -34,8 +35,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 						.withMessage(e.getMessage()));
 	}
 	
-	@ExceptionHandler(value = {AuthenticationException.class})
-	public ResponseEntity<ErrorWrapper> authError(AuthenticationException e) {
+	@ExceptionHandler(value = {AuthenticationException.class, InternalAuthenticationServiceException.class})
+	public ResponseEntity<ErrorWrapper> authError( RuntimeException e) {
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
 				.body(ErrorEnum.UNAUTHORIZED.getErrorWrapper()
 						.withMessage(e.getMessage()));
