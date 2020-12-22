@@ -5,6 +5,7 @@ import com.dista.cours.entite.UserActivation;
 import com.dista.cours.repository.UserActivationRepository;
 import com.dista.cours.service.MailingService;
 import com.dista.cours.service.UserActivationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class UserActivationServiceImpl implements UserActivationService {
 	@Autowired
 	private UserActivationRepository userActivationRepository;
@@ -39,7 +41,15 @@ public class UserActivationServiceImpl implements UserActivationService {
 		final Date expiresAt = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 		activation.setExpiresAt(expiresAt);
 		userActivationRepository.save(activation);
-		mailingService.sendEmail(activation);
+		try {
+			
+			mailingService.sendEmail(activation);
+		} catch (Exception e){
+			log.info("Send activation mail is failed");
+			log.info("activation code is : {}", activation.getToken());
+			log.error("",e);
+			
+		}
 		
 	}
 	

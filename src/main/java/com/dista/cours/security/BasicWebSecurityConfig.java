@@ -14,6 +14,7 @@ public class BasicWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
+				.antMatcher("/api/**")
 				.antMatcher("/swagger.html")
 				.antMatcher("/swagger-ui/**")
 				.antMatcher("/v3/**")
