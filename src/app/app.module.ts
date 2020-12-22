@@ -23,7 +23,6 @@ import {JwtInterceptor} from './service/auth/jwt.interceptor';
 import {StudentComponent} from './components/student/student.component';
 import {InscriptionComponent} from './components/inscription/inscription.component';
 import {ActivationComponent} from './components/activation/activation.component';
-import {LangInterceptor} from './service/auth/lang.interceptor';
 
 
 @NgModule({
@@ -55,7 +54,6 @@ import {LangInterceptor} from './service/auth/lang.interceptor';
 
   ],
   providers: [HttpClient, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LangInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
