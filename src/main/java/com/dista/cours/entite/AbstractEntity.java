@@ -22,7 +22,7 @@ import java.util.Date;
 public abstract class AbstractEntity implements Comparable<AbstractEntity> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

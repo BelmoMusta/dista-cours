@@ -1,7 +1,6 @@
 package com.dista.cours.security.jwt;
 
 import com.dista.cours.exception.AuthenticationException;
-import com.dista.cours.i18n.MessageProvider;
 import com.dista.cours.i18n.MessagesKeys;
 import com.dista.cours.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

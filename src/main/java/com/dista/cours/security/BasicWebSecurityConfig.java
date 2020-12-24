@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration
-@Order(1)
+@Order(0)
 
 public class BasicWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	

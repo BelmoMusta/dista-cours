@@ -14,10 +14,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@Order(0)
+@Order(1)
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -51,7 +51,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		antMatchersHolder.add(permitedRoutes);
 		httpSecurity.csrf().disable()
 				// dont authenticate this particular request
-				//.antMatcher("/api/**")
+				.antMatcher("/api/**")
 				.authorizeRequests()
 				.antMatchers(permitedRoutes)
 				.permitAll().// all other requests need to be authenticated
@@ -64,7 +64,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// Add a filter to validate the tokens with every request
 		
-		httpSecurity.addFilterAfter(jwtRequestFilter, BasicAuthenticationFilter.class);
+		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		
 		

@@ -3,11 +3,13 @@ package com.dista.cours.service.impl;
 import com.dista.cours.entite.Role;
 import com.dista.cours.entite.User;
 import com.dista.cours.entite.UserActivation;
+import com.dista.cours.entite.dto.CustomizedValueDTO;
 import com.dista.cours.entite.dto.RoleDTO;
 import com.dista.cours.entite.dto.UserDTO;
 import com.dista.cours.entite.dto.UserRoleDTO;
 import com.dista.cours.exception.NotFoundException;
 import com.dista.cours.repository.UserRepository;
+import com.dista.cours.service.CustomizedValueService;
 import com.dista.cours.service.RoleService;
 import com.dista.cours.service.UserActivationService;
 import com.dista.cours.service.UserService;
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserActivationService userActivationService;
+	
+	@Autowired
+	private CustomizedValueService customizedValueService;
 	
 	@Override
 	public User loadUserByUsernameOrEmail(String username) {
@@ -128,5 +133,22 @@ public class UserServiceImpl implements UserService {
 					return roleDTO;
 				})
 				.collect(Collectors.toList());
+	}
+	
+	@Override
+	public List<CustomizedValueDTO> customizedProperties(Long id) {
+		return customizedValueService.findFor("user", id);
+	}
+	
+	@Override
+	public void assignCustomizedValue(Long id, CustomizedValueDTO customizedValueDTO) {
+		
+		customizedValueService.createFor(id, "user", customizedValueDTO);
+	}
+	
+	@Override
+	public void assignCustomizedValueByPropertyId(Long id, Long propertyId, CustomizedValueDTO customizedValueDTO) {
+		customizedValueService.createFor(id, propertyId, "user", customizedValueDTO);
+		
 	}
 }

@@ -1,6 +1,7 @@
 package com.dista.cours.service;
 
 import com.dista.cours.entite.User;
+import com.dista.cours.entite.dto.CustomizedValueDTO;
 import com.dista.cours.entite.dto.RoleDTO;
 import com.dista.cours.entite.dto.UserDTO;
 import com.dista.cours.entite.dto.UserRoleDTO;
@@ -20,4 +21,10 @@ public interface UserService {
 	void revokeRole(UserRoleDTO userRoleDTO);
 	
 	List<RoleDTO> roles(Long id);
+	
+	List<CustomizedValueDTO> customizedProperties(Long id);
+	
+	void assignCustomizedValue(Long id, CustomizedValueDTO customizedValueDTO);
+	
+	void assignCustomizedValueByPropertyId(Long id, Long propertyId, CustomizedValueDTO customizedValueDTO);
 }
