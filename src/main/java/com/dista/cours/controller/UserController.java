@@ -1,11 +1,13 @@
 package com.dista.cours.controller;
 
+import com.dista.cours.entite.dto.CustomizedValueDTO;
 import com.dista.cours.entite.dto.RoleDTO;
 import com.dista.cours.entite.dto.UserDTO;
 import com.dista.cours.entite.dto.UserRoleDTO;
 import com.dista.cours.security.annotation.IsAdmin;
 import com.dista.cours.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,5 +55,20 @@ public class UserController {
 		userService.revokeRole(userRoleDTO);
 	}
 	
+	@GetMapping("/{id}/customized-properties")
+	public ResponseEntity<List<CustomizedValueDTO>> customizedProperties(@PathVariable Long id) {
+		return ResponseEntity.ok(userService.customizedProperties(id));
+	}
+	
+	@PostMapping("/{id}/assign-customized-value")
+	public ResponseEntity<?> assignCustomizedValue(@PathVariable Long id, @RequestBody CustomizedValueDTO customizedValueDTO) {
+		userService.assignCustomizedValue(id, customizedValueDTO);
+		return ResponseEntity.ok().build();
+	}
+	@PostMapping("/{id}/assign-customized-value/{propertyId}")
+	public ResponseEntity<?> assignCustomizedValueByPropertyId(@PathVariable Long id, @PathVariable Long propertyId, @RequestBody CustomizedValueDTO customizedValueDTO) {
+		userService.assignCustomizedValueByPropertyId(id, propertyId, customizedValueDTO);
+		return ResponseEntity.ok().build();
+	}
 	
 }

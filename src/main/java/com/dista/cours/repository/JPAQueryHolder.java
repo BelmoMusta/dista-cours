@@ -1,10 +1,8 @@
 package com.dista.cours.repository;
 
-import com.querydsl.core.dml.InsertClause;
 import com.querydsl.core.types.EntityPath;
 import com.querydsl.jpa.impl.JPADeleteClause;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAUpdateClause;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
