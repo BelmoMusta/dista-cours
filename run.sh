@@ -5,4 +5,4 @@ then
     kill -9 "$PROCESS_ID"
 fi
 CURRENT_DIR=$1
-nohup java -jar $CURRENT_DIR/dista_cours.jar --spring.datasource.username=$DATABASE_USERNAME --spring.datasource.password=$DATABASE_PASSWORD >> server.log 2>&1&
+nohup java -jar $CURRENT_DIR/dista_cours.jar --spring.datasource.username=$DATABASE_USERNAME --spring.datasource.password=$DATABASE_PASSWORD >>  $CURRENT_DIR/server.log 2>&1&
