@@ -4,4 +4,4 @@ if [[  "$PROCESS_ID" ]]
 then
     kill -9 "$PROCESS_ID"
 fi
-nohup java -jar dista_cours.jar --spring.datasource.username=$DATABASE_USERNAME --spring.datasource.password=$DATABASE_PASSWORD &
+nohup java -jar ./dista_cours.jar --spring.datasource.username=$DATABASE_USERNAME --spring.datasource.password=$DATABASE_PASSWORD &
