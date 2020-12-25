@@ -1,4 +1,4 @@
-package com.dista.cours;
+package com.dista.cours.config;
 
 import lombok.Getter;
 import lombok.Setter;

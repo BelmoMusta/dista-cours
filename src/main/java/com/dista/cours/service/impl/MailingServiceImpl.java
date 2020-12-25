@@ -1,7 +1,7 @@
 package com.dista.cours.service.impl;
 
 import com.dista.cours.ActivationMailTemplate;
-import com.dista.cours.MailConfiguration;
+import com.dista.cours.config.MailConfiguration;
 import com.dista.cours.entite.User;
 import com.dista.cours.entite.UserActivation;
 import com.dista.cours.service.MailingService;
