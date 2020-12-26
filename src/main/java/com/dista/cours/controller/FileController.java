@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,11 +24,10 @@ public class FileController {
 	@PostMapping("/upload")
 	public void upload(@RequestParam(name = "file", required = true) MultipartFile file) {
 		fileService.upload(file);
-		
 	}
 	
-	@GetMapping("/{id}/customized-properties")
-	public ResponseEntity<List<CustomizedValueDTO>> customizedProperties(@PathVariable Long id) {
+	@GetMapping("/{id}/download")
+	public ResponseEntity<List<CustomizedValueDTO>> downloadFile(Long id) {
 		return ResponseEntity.ok().build();
 	}
 	

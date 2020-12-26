@@ -3,9 +3,13 @@ package com.dista.cours.entite;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+
 @Getter
 @Setter
-public class FileDescriber {
-	String name;
-	String extension;
+@Entity
+public class FileDescriber extends AbstractEntity{
+	private String originalFileName;
+	private String fullPath;
+	private String extension;
 }
