@@ -135,4 +135,9 @@ public class FileServiceImpl implements FileService {
 		}
 		return ResponseEntity.notFound().build();
 	}
+	
+	@Override
+	public ResponseEntity<Resource> metadata(long id) {
+		return null;
+	}
 }

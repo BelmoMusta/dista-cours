@@ -12,4 +12,5 @@ public interface FileService {
 	void deleteLogically(Long id);
 	
 	ResponseEntity<Resource> download(long id);
+	ResponseEntity<Resource> metadata(long id);
 }

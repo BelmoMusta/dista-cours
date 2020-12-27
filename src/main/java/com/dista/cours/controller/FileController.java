@@ -40,4 +40,8 @@ public class FileController {
 	public ResponseEntity<Resource> downloadFile(@PathVariable Long id) {
 		return fileService.download(id);
 	}
+	@GetMapping("/{id}/metadata")
+	public ResponseEntity<?> metadata(@PathVariable Long id) {
+		return fileService.metadata(id);
+	}
 }

@@ -2,6 +2,7 @@ package com.dista.cours.entite;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import java.io.File;
 @Getter
 @Setter
 @Entity
+@DynamicUpdate
 public class FileDescriber extends AbstractEntity {
 	private String originalFileName;
 	private String extension;
