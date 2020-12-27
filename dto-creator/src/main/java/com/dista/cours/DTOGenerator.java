@@ -18,8 +18,7 @@ import java.io.File;
  * @phase process-sources
  */
 @Mojo(name = "dto-generator", defaultPhase = LifecyclePhase.COMPILE)
-public class DTOGenerator
-		extends AbstractMojo {
+public class DTOGenerator extends AbstractMojo {
 	
 	@Parameter(defaultValue = "${project.build.directory}", required = true, readonly = false)
 	private File outputDirectory;
@@ -39,7 +38,7 @@ public class DTOGenerator
 			f.mkdirs();
 		}
 		try {
-			ClassToDTO.generateDTOSinDirectory(src.getAbsolutePath(), "dto", "DTOS");
+			ClassToDTO.generateDTOSinDirectory(src.getAbsolutePath(), "DTO", new File(new File(outputDirectory,"generated-sources"),"dto").getAbsolutePath() );
 		} catch (Exception e) {
 			throw new MojoExecutionException("Error generating dtos ", e);
 		}

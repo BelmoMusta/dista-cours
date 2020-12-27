@@ -1,5 +1,6 @@
 package com.dista.cours.entite;
 
+import com.dista.cours.annotation.DTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
@@ -15,6 +16,7 @@ import java.io.File;
 @Setter
 @Entity
 @DynamicUpdate
+@DTO
 public class FileDescriber extends AbstractEntity {
 	private String originalFileName;
 	private String extension;

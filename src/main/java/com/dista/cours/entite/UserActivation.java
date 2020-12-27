@@ -1,5 +1,6 @@
 package com.dista.cours.entite;
 
+import com.dista.cours.annotation.DTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@DTO
 public class UserActivation extends AbstractEntity {
 	
 	@ManyToOne

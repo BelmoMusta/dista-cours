@@ -33,19 +33,19 @@ public class FieldDTOVisitor extends VoidVisitorAdapter<ClassOrInterfaceDeclarat
 	private boolean isPrimitiveOrInJDK(Type type) {
 		String string = type.asString();
 		List<String> possibleClasses = Arrays.asList("java.lang.",
-				"java.math",
+				"java.math.",
 				"java.util.",
 				"java.io.",
 				"java.time.");
-		
-		if (!type.isPrimitiveType()) {
-			for (String possibleClass : possibleClasses) {
-				try {
-					Class.forName(possibleClass + string);
-					return true;
-				} catch (ClassNotFoundException e) {
-				
-				}
+		if (type.isPrimitiveType()) {
+			return true;
+		}
+		for (String possibleClass : possibleClasses) {
+			try {
+				Class.forName(possibleClass + string);
+				return true;
+			} catch (ClassNotFoundException e) {
+			
 			}
 		}
 		return false;

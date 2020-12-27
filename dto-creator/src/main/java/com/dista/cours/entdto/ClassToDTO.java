@@ -27,15 +27,15 @@ public class ClassToDTO {
 		}
 		
 		final PackageDeclaration packageDeclaration = compilationUnit.getPackageDeclaration()
-				.map(pkg -> pkg.setName(new Name(pkg.getName().asString() + "." + prefix)))
-				.orElse(new PackageDeclaration(new Name(prefix)));
+				.map(pkg -> pkg.setName(new Name(pkg.getName().asString() + "." + prefix.toLowerCase())))
+				.orElse(new PackageDeclaration(new Name(prefix.toLowerCase())));
 		clone.setPackageDeclaration(packageDeclaration);
 		aClass.addField("Long", "id", Modifier.PRIVATE);
 		compilationUnit.accept(new FieldDTOVisitor(), aClass);
 		return clone;
 	}
 	
-	public static void generateDTOSinDirectory(String srcDirectory, String prefix, String subdirectory) throws Exception {
+	public static void generateDTOSinDirectory(String srcDirectory, String prefix, String outputDirectory) throws Exception {
 		Collection<File> files = FileUtils.listFiles(new File(srcDirectory), new String[]{"java"}, true);
 		for (File file : files) {
 			final CompilationUnit generatedDtoContent = generateDTO(file, prefix);
@@ -44,18 +44,29 @@ public class ClassToDTO {
 			}
 			String child = file.getName().replaceAll("\\.java", prefix + ".java");
 			
-			
-			File destinationFile = new File(new File(file.getParentFile(), subdirectory), child);
-			if (!destinationFile.exists()) {
-				FileUtils.write(destinationFile, generatedDtoContent.toString(), StandardCharsets.UTF_8);
+			File truePackage = getTruePackage(outputDirectory, generatedDtoContent);
+			File destinationFolder = null;
+			if(truePackage != null){
+				truePackage.mkdirs();
+				destinationFolder = truePackage;
 			}
+			if (destinationFolder != null && !destinationFolder.exists()) {
+				destinationFolder.mkdirs();
+			}
+			FileUtils.write(new File(destinationFolder, child), generatedDtoContent.toString(), StandardCharsets.UTF_8);
+			
 		}
 	}
 	
-	public static void main(String[] args) throws Exception {
-		final String srcDirectory = "D:\\0001_PERSO\\CODE\\booqs\\src\\main\\java\\com\\musta\\belmo\\booqs" +
-				"\\entite";
-		
-		generateDTOSinDirectory(srcDirectory, "DTO", "dto");
+	private static File getTruePackage(String outDirectory, CompilationUnit generatedDtoContent) {
+		return generatedDtoContent.getPackageDeclaration().map(pkg -> {
+			String nameAsString = pkg.getNameAsString();
+			String[] split = nameAsString.split("\\.");
+			File truePackage = new File(outDirectory);
+			for (int i = 0; i < split.length; i++) {
+				truePackage = new File(truePackage, split[i]);
+			}
+			return truePackage;
+		}).orElse(null);
 	}
 }

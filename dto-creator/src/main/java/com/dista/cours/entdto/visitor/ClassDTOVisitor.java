@@ -7,7 +7,7 @@ import com.github.javaparser.ast.visitor.GenericVisitorAdapter;
 public class ClassDTOVisitor extends GenericVisitorAdapter<ClassOrInterfaceDeclaration, CompilationUnit> {
 	@Override
 	public ClassOrInterfaceDeclaration visit(ClassOrInterfaceDeclaration classOrInterfaceDeclaration, CompilationUnit destination) {
-        if(classOrInterfaceDeclaration.isAbstract()){
+        if(classOrInterfaceDeclaration.isAbstract() || !classOrInterfaceDeclaration.getAnnotationByName("DTO").isPresent()){
         	return null;
 		}
 		final String className = classOrInterfaceDeclaration.getNameAsString();

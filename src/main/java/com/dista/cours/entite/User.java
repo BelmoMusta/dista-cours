@@ -1,5 +1,6 @@
 package com.dista.cours.entite;
 
+import com.dista.cours.annotation.DTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@DTO
 public class User extends AbstractEntity implements UserDetails {
 	private String name;
 	private String lastName;

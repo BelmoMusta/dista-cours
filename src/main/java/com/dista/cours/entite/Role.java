@@ -1,5 +1,6 @@
 package com.dista.cours.entite;
 
+import com.dista.cours.annotation.DTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,8 @@ import java.util.Objects;
 @Table(uniqueConstraints={
 		@UniqueConstraint(columnNames = {"authority"})
 })
+
+@DTO
 public class Role extends AbstractEntity implements GrantedAuthority {
 	private String authority;
 	private boolean enabled;

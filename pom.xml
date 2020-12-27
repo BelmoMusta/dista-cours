@@ -99,6 +99,12 @@
             <artifactId>spring-boot-starter-mail</artifactId>
             <version>2.2.5.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.dista.cours</groupId>
+            <artifactId>dto-creator</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
     <build>
