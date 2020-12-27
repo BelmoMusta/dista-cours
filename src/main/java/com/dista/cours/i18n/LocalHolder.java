@@ -15,4 +15,8 @@ public class LocalHolder {
 	public static Locale getLocale() {
 		return threadLocal.get();
 	}
+	
+	public void remove() {
+		threadLocal.remove();
+	}
 }

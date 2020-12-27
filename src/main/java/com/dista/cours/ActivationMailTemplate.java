@@ -1,5 +1,6 @@
 package com.dista.cours;
 
+import com.dista.cours.config.MailConfiguration;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ActivationMailTemplate extends SimpleMailMessage {
 		super.setText("fake text");
 	}
 	@Autowired
-	private	MailConfiguration mailConfiguration;
+	private MailConfiguration mailConfiguration;
 	private String fullName;
 	private String token;
 	private Date expirationDate;
