@@ -1,8 +1,11 @@
 package com.dista.cours.service.impl;
 
+import java.util.Date;
+
 import com.dista.cours.config.ApplicationPropertiesHolder;
 import com.dista.cours.entite.FileDescriber;
 import com.dista.cours.entite.User;
+import com.dista.cours.entite.dto.FileDescriberDTO;
 import com.dista.cours.exception.FileStorageException;
 import com.dista.cours.service.FileDescriberService;
 import com.dista.cours.service.FileService;
@@ -74,6 +77,7 @@ public class FileServiceImpl implements FileService {
 		output.flush();
 		output.close();
 	}
+	
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor =
 			FileStorageException.class)
 	@Override
@@ -134,5 +138,26 @@ public class FileServiceImpl implements FileService {
 					.body(new InputStreamResource(fileInputStream));
 		}
 		return ResponseEntity.notFound().build();
+	}
+	
+	@Override
+	public ResponseEntity<FileDescriberDTO> metadata(Long id) {
+		return fileDescriberService.findOne(id).map(desc -> {
+					FileDescriberDTO fileDescriberDTO = new FileDescriberDTO();
+					fileDescriberDTO.setOriginalFileName(desc.getOriginalFileName());
+					fileDescriberDTO.setExtension(desc.getExtension());
+					fileDescriberDTO.setUplodLocation(desc.getUplodLocation());
+					fileDescriberDTO.setContentType(desc.getContentType());
+					fileDescriberDTO.setDeleted(desc.isDeleted());
+					fileDescriberDTO.setSize(desc.getSize());
+					fileDescriberDTO.setDownloadCount(desc.getDownloadCount());
+					fileDescriberDTO.setId(desc.getId());
+					fileDescriberDTO.setCreatedAt(desc.getCreatedAt());
+					fileDescriberDTO.setUpdatedAt(desc.getUpdatedAt());
+					return fileDescriberDTO;
+				}
+		
+		).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+		
 	}
 }

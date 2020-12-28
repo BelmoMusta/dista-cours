@@ -1,5 +1,6 @@
 package com.dista.cours.controller;
 
+import com.dista.cours.entite.dto.FileDescriberDTO;
 import com.dista.cours.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -39,5 +40,10 @@ public class FileController {
 	@GetMapping("/{id}/download")
 	public ResponseEntity<Resource> downloadFile(@PathVariable Long id) {
 		return fileService.download(id);
+	}
+	
+	@GetMapping("/{id}/metadata")
+	public ResponseEntity<FileDescriberDTO> metadata(@PathVariable Long id) {
+		return fileService.metadata(id);
 	}
 }
