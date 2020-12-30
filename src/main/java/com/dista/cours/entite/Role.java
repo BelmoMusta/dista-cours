@@ -2,6 +2,7 @@ package com.dista.cours.entite;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import java.util.Objects;
 		@UniqueConstraint(columnNames = {"authority"})
 })
 public class Role extends AbstractEntity implements GrantedAuthority {
+	@NaturalId(mutable = true)
 	private String authority;
 	private boolean enabled;
 	

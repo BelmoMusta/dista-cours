@@ -2,15 +2,19 @@ package com.dista.cours.entite;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Entity;
 
-@Entity
 @Getter
 @Setter
-public class CustomizedProperty extends AbstractEntity {
+@Entity
+@DynamicUpdate
+public class Parameter extends AbstractEntity {
 	@NaturalId(mutable = true)
 	private String name;
-	private String type;
+	private String value;
+	private ParameterType type;
+	private boolean enabled;
 }
