@@ -64,7 +64,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// Add a filter to validate the tokens with every request
 		
-		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		
 		
 		

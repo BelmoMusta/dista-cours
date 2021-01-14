@@ -33,26 +33,21 @@ public class ParametersController {
 	public void create(@RequestBody ParameterDTO parameterDTO) {
 		parameterService.createParameter(parameterDTO);
 	}
-	@PutMapping("/{id}/enable")
-	@IsAdmin
-	public void enable(@PathVariable Long id) {
-		parameterService.enable(id);
-	}
-	
-	@PutMapping("/{id}/disable")
-	@IsAdmin
-	public void disable(@PathVariable Long id) {
-		parameterService.disable(id);
-	}
 	
 	@PutMapping("/{id}/edit")
 	@IsAdmin
-	public void edit(@PathVariable Long id, @RequestBody ParameterDTO parameterDTO ) {
+	public void edit(@PathVariable Long id, @RequestBody ParameterDTO parameterDTO) {
 		parameterService.edit(id, parameterDTO);
 	}
-	@PutMapping("/{id}/assign-value")
+	
+	@PutMapping("/assign-value")
 	@IsAdmin
-	public void assignValue(@PathVariable Long id, @RequestBody UserParamDTO userParamDTO ) {
-		parameterService.assignValue(id, userParamDTO);
+	public void assignValue(@RequestBody UserParamDTO userParamDTO) {
+		parameterService.assignValue(userParamDTO);
+	}
+	
+	@PutMapping("/assign-value-to-user")
+	public void assignValueToUser(@RequestBody UserParamDTO userParamDTO) {
+		parameterService.assignValueToAUser(userParamDTO);
 	}
 }

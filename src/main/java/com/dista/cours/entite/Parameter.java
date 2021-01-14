@@ -14,7 +14,5 @@ import javax.persistence.Entity;
 public class Parameter extends AbstractEntity {
 	@NaturalId(mutable = true)
 	private String name;
-	private String value;
 	private ParameterType type;
-	private boolean enabled;
 }

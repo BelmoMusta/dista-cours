@@ -14,17 +14,11 @@ public interface ParameterService {
 	
 	Parameter createParameter(ParameterDTO name);
 	
-	void enable(Long id);
-	
-	void enable(String name);
-	
-	void disable(String name);
-	
-	void disable(Long id);
-	
 	void edit(Long id, ParameterDTO parameterDTO);
 	
 	ParameterDTO show(Long id);
 	
-	void assignValue(Long id, UserParamDTO userParamDTO);
+	void assignValue(UserParamDTO userParamDTO);
+	
+	void assignValueToAUser(UserParamDTO userParamDTO);
 }

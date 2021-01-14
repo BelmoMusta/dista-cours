@@ -1,24 +1,29 @@
 package com.dista.cours.service.impl;
-import com.dista.cours.entite.ParameterType;
 
 import com.dista.cours.entite.Parameter;
+import com.dista.cours.entite.User;
+import com.dista.cours.entite.UserParameter;
 import com.dista.cours.entite.dto.ParameterDTO;
 import com.dista.cours.entite.dto.UserParamDTO;
 import com.dista.cours.exception.NotFoundException;
 import com.dista.cours.repository.ParameterRepository;
+import com.dista.cours.repository.UserParameterRepository;
 import com.dista.cours.service.ParameterService;
 import com.dista.cours.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class ParameterServiceImpl implements ParameterService {
 	@Autowired
 	private ParameterRepository parameterRepository;
-	
+	@Autowired
+	private UserParameterRepository userParameterRepository;
 	@Autowired
 	private UserService userService;
 	
@@ -49,35 +54,6 @@ public class ParameterServiceImpl implements ParameterService {
 	
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void enable(Long id) {
-		changeState(findById(id), true);
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void enable(String name) {
-		changeState(findByName(name), true);
-	}
-	
-	private void changeState(Parameter parameter, boolean enabled) {
-		parameter.setEnabled(enabled);
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void disable(String name) {
-		changeState(findByName(name), false);
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void disable(Long id) {
-		changeState(findById(id), false);
-		
-	}
-	
-	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
 	public void edit(Long id, ParameterDTO parameterDTO) {
 		Parameter parameter = findById(id);
 		parameter.setType(parameterDTO.getType());
@@ -95,8 +71,35 @@ public class ParameterServiceImpl implements ParameterService {
 	}
 	
 	@Override
-	public void assignValue(Long id, UserParamDTO userParamDTO) {
-		final Parameter parameter = findById(id);
-		
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void assignValue(UserParamDTO userParamDTO) {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		assignParamValueToAUser(userParamDTO, user);
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void assignValueToAUser(UserParamDTO userParamDTO) {
+		User user = userService.findById(userParamDTO.getUserId());
+		assignParamValueToAUser(userParamDTO, user);
+	}
+	
+	private void assignParamValueToAUser(UserParamDTO userParamDTO, User user) {
+		final Parameter parameter = findById(userParamDTO.getParameterId());
+		if (parameter != null && user != null) {
+			Optional<UserParameter> userParameter =
+					userParameterRepository.findByUserIdAndParameterId(parameter.getId(), user.getId());
+			if (userParameter.isPresent()) {
+				userParameter.get().setValue(userParamDTO.getValue());
+			} else {
+				UserParameter uParam = new UserParameter();
+				uParam.setUserId(user.getId());
+				uParam.setParameterId(parameter.getId());
+				uParam.setValue(userParamDTO.getValue());
+				userParameterRepository.save(uParam);
+				
+				
+			}
+		}
 	}
 }

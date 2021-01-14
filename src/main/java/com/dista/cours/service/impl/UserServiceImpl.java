@@ -151,4 +151,10 @@ public class UserServiceImpl implements UserService {
 		customizedValueService.createFor(id, propertyId, "user", customizedValueDTO);
 		
 	}
+	
+	@Override
+	public User findById(Long userId) {
+		return userRepository.findById(userId)
+				.orElseThrow(NotFoundException::new);
+	}
 }

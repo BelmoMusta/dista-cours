@@ -27,4 +27,6 @@ public interface UserService {
 	void assignCustomizedValue(Long id, CustomizedValueDTO customizedValueDTO);
 	
 	void assignCustomizedValueByPropertyId(Long id, Long propertyId, CustomizedValueDTO customizedValueDTO);
+	
+	User findById(Long userId);
 }
