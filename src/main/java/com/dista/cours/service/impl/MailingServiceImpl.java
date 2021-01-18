@@ -1,6 +1,6 @@
 package com.dista.cours.service.impl;
 
-import com.dista.cours.ActivationMailTemplate;
+import com.dista.cours.config.ActivationMailTemplate;
 import com.dista.cours.config.MailConfiguration;
 import com.dista.cours.entite.User;
 import com.dista.cours.entite.UserActivation;

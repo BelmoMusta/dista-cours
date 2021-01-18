@@ -6,6 +6,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Getter
 @Setter
@@ -14,5 +16,6 @@ import javax.persistence.Entity;
 public class Parameter extends AbstractEntity {
 	@NaturalId(mutable = true)
 	private String name;
+	@Enumerated(EnumType.STRING)
 	private ParameterType type;
 }

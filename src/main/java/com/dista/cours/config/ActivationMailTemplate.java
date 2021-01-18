@@ -1,4 +1,4 @@
-package com.dista.cours;
+package com.dista.cours.config;
 
 import com.dista.cours.config.MailConfiguration;
 import lombok.Getter;

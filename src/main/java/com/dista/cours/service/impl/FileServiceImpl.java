@@ -1,11 +1,9 @@
 package com.dista.cours.service.impl;
 
-import java.util.Date;
-
 import com.dista.cours.config.ApplicationPropertiesHolder;
 import com.dista.cours.entite.FileDescriber;
 import com.dista.cours.entite.User;
-import com.dista.cours.entite.dto.FileDescriberDTO;
+import com.dista.cours.dtos.FileDescriberDTO;
 import com.dista.cours.exception.FileStorageException;
 import com.dista.cours.service.FileDescriberService;
 import com.dista.cours.service.FileService;

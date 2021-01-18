@@ -1,6 +1,6 @@
 package com.dista.cours.security.jwt;
 
-import com.dista.cours.entite.dto.UserDTO;
+import com.dista.cours.dtos.UserDTO;
 import lombok.Getter;
 import lombok.Setter;
 

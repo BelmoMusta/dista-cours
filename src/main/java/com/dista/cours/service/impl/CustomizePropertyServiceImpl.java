@@ -3,7 +3,7 @@ package com.dista.cours.service.impl;
 
 import com.dista.cours.entite.CustomizedProperty;
 import com.dista.cours.entite.QCustomizedProperty;
-import com.dista.cours.entite.dto.CustomizedPropertyDTO;
+import com.dista.cours.dtos.CustomizedPropertyDTO;
 import com.dista.cours.repository.CustomizedPropertyRepository;
 import com.dista.cours.repository.JPAQueryHolder;
 import com.dista.cours.service.CustomizePropertyService;

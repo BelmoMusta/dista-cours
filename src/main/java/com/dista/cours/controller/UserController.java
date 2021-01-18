@@ -1,9 +1,9 @@
 package com.dista.cours.controller;
 
-import com.dista.cours.entite.dto.CustomizedValueDTO;
-import com.dista.cours.entite.dto.RoleDTO;
-import com.dista.cours.entite.dto.UserDTO;
-import com.dista.cours.entite.dto.UserRoleDTO;
+import com.dista.cours.dtos.CustomizedValueDTO;
+import com.dista.cours.dtos.RoleDTO;
+import com.dista.cours.dtos.UserDTO;
+import com.dista.cours.dtos.UserRoleDTO;
 import com.dista.cours.security.annotation.IsAdmin;
 import com.dista.cours.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

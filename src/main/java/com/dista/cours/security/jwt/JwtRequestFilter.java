@@ -1,6 +1,6 @@
 package com.dista.cours.security.jwt;
 
-import com.dista.cours.AntMatchersHolder;
+import com.dista.cours.config.AntMatchersHolder;
 import com.dista.cours.exception.AuthenticationException;
 import com.dista.cours.i18n.MessagesKeys;
 import io.jsonwebtoken.ExpiredJwtException;

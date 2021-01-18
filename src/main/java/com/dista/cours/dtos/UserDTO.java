@@ -1,4 +1,4 @@
-package com.dista.cours.entite.dto;
+package com.dista.cours.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

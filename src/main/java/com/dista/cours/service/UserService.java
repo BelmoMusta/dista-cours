@@ -1,10 +1,10 @@
 package com.dista.cours.service;
 
 import com.dista.cours.entite.User;
-import com.dista.cours.entite.dto.CustomizedValueDTO;
-import com.dista.cours.entite.dto.RoleDTO;
-import com.dista.cours.entite.dto.UserDTO;
-import com.dista.cours.entite.dto.UserRoleDTO;
+import com.dista.cours.dtos.CustomizedValueDTO;
+import com.dista.cours.dtos.RoleDTO;
+import com.dista.cours.dtos.UserDTO;
+import com.dista.cours.dtos.UserRoleDTO;
 
 import java.util.List;
 

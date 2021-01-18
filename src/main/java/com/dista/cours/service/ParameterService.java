@@ -1,8 +1,11 @@
 package com.dista.cours.service;
 
 import com.dista.cours.entite.Parameter;
-import com.dista.cours.entite.dto.ParameterDTO;
-import com.dista.cours.entite.dto.UserParamDTO;
+import com.dista.cours.dtos.ParameterDTO;
+import com.dista.cours.dtos.ParameterValueDTO;
+import com.dista.cours.dtos.UserParamDTO;
+
+import java.util.List;
 
 public interface ParameterService {
 	
@@ -21,4 +24,6 @@ public interface ParameterService {
 	void assignValue(UserParamDTO userParamDTO);
 	
 	void assignValueToAUser(UserParamDTO userParamDTO);
+	
+	List<ParameterValueDTO> getAll();
 }

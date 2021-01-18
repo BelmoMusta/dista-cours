@@ -1,12 +1,19 @@
 package com.dista.cours.service.impl;
 
+import com.dista.cours.dtos.ParameterDTO;
+import com.dista.cours.dtos.ParameterValueDTO;
+import com.dista.cours.dtos.UserParamDTO;
 import com.dista.cours.entite.Parameter;
+import com.dista.cours.entite.ParameterValue;
 import com.dista.cours.entite.User;
 import com.dista.cours.entite.UserParameter;
-import com.dista.cours.entite.dto.ParameterDTO;
-import com.dista.cours.entite.dto.UserParamDTO;
+
+
+
 import com.dista.cours.exception.NotFoundException;
+import com.dista.cours.mappers.ParamMapper;
 import com.dista.cours.repository.ParameterRepository;
+import com.dista.cours.repository.ParameterValueRepository;
 import com.dista.cours.repository.UserParameterRepository;
 import com.dista.cours.service.ParameterService;
 import com.dista.cours.service.UserService;
@@ -16,6 +23,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,7 +34,12 @@ public class ParameterServiceImpl implements ParameterService {
 	@Autowired
 	private UserParameterRepository userParameterRepository;
 	@Autowired
+	ParameterValueRepository parameterValueRepository;
+	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ParamMapper paramMapper;
 	
 	@Override
 	public Parameter findById(Long id) {
@@ -82,6 +96,12 @@ public class ParameterServiceImpl implements ParameterService {
 	public void assignValueToAUser(UserParamDTO userParamDTO) {
 		User user = userService.findById(userParamDTO.getUserId());
 		assignParamValueToAUser(userParamDTO, user);
+	}
+	
+	@Override
+	public List<ParameterValueDTO> getAll() {
+		List<ParameterValue> all = parameterValueRepository.findAll();
+		return paramMapper.toDTO(all);
 	}
 	
 	private void assignParamValueToAUser(UserParamDTO userParamDTO, User user) {

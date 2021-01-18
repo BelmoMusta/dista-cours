@@ -1,7 +1,7 @@
 package com.dista.cours.service;
 
 import com.dista.cours.entite.CustomizedValue;
-import com.dista.cours.entite.dto.CustomizedValueDTO;
+import com.dista.cours.dtos.CustomizedValueDTO;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.dista.cours.service.impl;
 import com.dista.cours.entite.CustomizedProperty;
 import com.dista.cours.entite.CustomizedValue;
-import com.dista.cours.entite.dto.CustomizedValueDTO;
+import com.dista.cours.dtos.CustomizedValueDTO;
 import com.dista.cours.repository.CustomizedValueRepository;
 import com.dista.cours.service.CustomizePropertyService;
 import com.dista.cours.service.CustomizedValueService;

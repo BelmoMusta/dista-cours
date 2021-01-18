@@ -1,4 +1,5 @@
-package com.dista.cours.entite.dto;
+package com.dista.cours.dtos;
+
 
 import com.dista.cours.entite.ParameterType;
 import lombok.Getter;

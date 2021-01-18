@@ -1,13 +1,9 @@
-package com.dista.cours.entite.dto;
+package com.dista.cours.dtos;
 
 import com.dista.cours.entite.AbstractEntity;
-import com.dista.cours.entite.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import java.io.File;
 
