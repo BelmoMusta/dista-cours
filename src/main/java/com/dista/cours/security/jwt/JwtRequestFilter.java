@@ -4,6 +4,7 @@ import com.dista.cours.AntMatchersHolder;
 import com.dista.cours.exception.AuthenticationException;
 import com.dista.cours.i18n.MessagesKeys;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,10 +49,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 				jwtToken = requestTokenHeader.substring(7);
 				username = getUsername(jwtToken);
 			}
-		} catch (Exception e) {
-			doFilterChain = false;
-			handlerExceptionResolver.resolveException(request, response, null, e);
-		}
+        } catch (SignatureException exception) {
+            filterChain.doFilter(request, response);
+            doFilterChain = false;
+            handlerExceptionResolver.resolveException(request, response, null, exception);
+
+        } catch (Exception e) {
+            doFilterChain = false;
+            handlerExceptionResolver.resolveException(request, response, null, e);
+        }
 		
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
