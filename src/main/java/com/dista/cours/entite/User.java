@@ -2,6 +2,7 @@ package com.dista.cours.entite;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Where;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +21,7 @@ import java.util.Set;
 public class User extends AbstractEntity implements UserDetails {
 	private String name;
 	private String lastName;
+	@NaturalId(mutable = true)
 	private String username;
 	private String email;
 	private String password;

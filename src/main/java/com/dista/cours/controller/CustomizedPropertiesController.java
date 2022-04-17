@@ -1,6 +1,6 @@
 package com.dista.cours.controller;
 
-import com.dista.cours.entite.dto.CustomizedPropertyDTO;
+import com.dista.cours.dtos.CustomizedPropertyDTO;
 import com.dista.cours.service.CustomizePropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.dista.cours;
+package com.dista.cours.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

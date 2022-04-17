@@ -1,7 +1,7 @@
 package com.dista.cours.security.jwt;
 
 import com.dista.cours.entite.User;
-import com.dista.cours.entite.dto.UserDTO;
+import com.dista.cours.dtos.UserDTO;
 import com.dista.cours.exception.AuthenticationException;
 import com.dista.cours.i18n.MessageProvider;
 import com.dista.cours.i18n.MessagesKeys;

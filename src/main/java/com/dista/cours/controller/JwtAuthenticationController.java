@@ -1,6 +1,6 @@
 package com.dista.cours.controller;
 
-import com.dista.cours.entite.dto.UserDTO;
+import com.dista.cours.dtos.UserDTO;
 import com.dista.cours.security.jwt.JwtAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

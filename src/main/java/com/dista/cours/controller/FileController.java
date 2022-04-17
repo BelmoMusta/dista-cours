@@ -1,6 +1,6 @@
 package com.dista.cours.controller;
 
-import com.dista.cours.entite.dto.FileDescriberDTO;
+import com.dista.cours.dtos.FileDescriberDTO;
 import com.dista.cours.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
