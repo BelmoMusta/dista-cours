@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@Order(1)
+@Order(10)
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
