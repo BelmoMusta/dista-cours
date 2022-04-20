@@ -27,6 +27,7 @@ public class FieldDTOVisitor extends VoidVisitorAdapter<ClassOrInterfaceDeclarat
 		FieldDeclaration fieldDeclaration = destination.addField(destinationType,
 				field.getVariable(0).getNameAsString());
 		fieldDeclaration.addModifier(Modifier.PRIVATE);
+        destination.addField("Long", "id", Modifier.PRIVATE);
 		super.visit(field, destination);
 	}
 	

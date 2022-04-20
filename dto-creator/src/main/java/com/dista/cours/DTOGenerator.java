@@ -1,6 +1,7 @@
 package com.dista.cours;
 
 import com.dista.cours.entdto.ClassToDTO;
+import com.dista.cours.validation.impl.ValidatorGenerator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -17,7 +18,7 @@ import java.io.File;
  *
  * @phase process-sources
  */
-@Mojo(name = "dto-generator", defaultPhase = LifecyclePhase.COMPILE)
+@Mojo(name = "dto-generator", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
 public class DTOGenerator extends AbstractMojo {
 	
 	@Parameter(defaultValue = "${project.build.directory}", required = true, readonly = false)
@@ -38,6 +39,8 @@ public class DTOGenerator extends AbstractMojo {
 			f.mkdirs();
 		}
 		try {
+
+            ValidatorGenerator.generateDTOSinDirectory(src.getAbsolutePath(), "DTO", new File(new File(outputDirectory,"generated-sources"),"dto").getAbsolutePath() );
 			ClassToDTO.generateDTOSinDirectory(src.getAbsolutePath(), "DTO", new File(new File(outputDirectory,"generated-sources"),"dto").getAbsolutePath() );
 		} catch (Exception e) {
 			throw new MojoExecutionException("Error generating dtos ", e);
