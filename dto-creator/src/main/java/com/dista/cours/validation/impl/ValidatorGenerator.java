@@ -1,44 +1,33 @@
 package com.dista.cours.validation.impl;
 
-import com.dista.cours.entdto.visitor.PackageDeclarationVisitor;
+import com.dista.cours.validation.visitor.MethodImplementorVisitor;
+import com.dista.cours.validation.visitor.PackageDeclarationVisitor;
 import com.dista.cours.validation.visitor.ValidatorClassVisitor;
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ParseResult;
-import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.symbolsolver.JavaSymbolSolver;
-import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
-import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
-import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeSolver;
-import com.github.javaparser.utils.SourceRoot;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.Collection;
-import java.util.Optional;
 
 public class ValidatorGenerator {
 
 
     public static CompilationUnit generateDTO(File file, String prefix) throws Exception {
-        final CompilationUnit compilationUnit = JavaParser.parse(file);
-        final CompilationUnit clone = new CompilationUnit();
-        compilationUnit.accept(new PackageDeclarationVisitor(compilationUnit), clone);
+        final CompilationUnit unitToValidate = JavaParser.parse(file);
+        final CompilationUnit validationGeneratedClass = new CompilationUnit();
         String className = "ValidatorGeneratedClass";
-        final ClassOrInterfaceDeclaration aClass = compilationUnit.accept(new ValidatorClassVisitor(className), clone);
+        final ClassOrInterfaceDeclaration aClass = unitToValidate.accept(new ValidatorClassVisitor(className), validationGeneratedClass);
         if (aClass == null) {
             return null;
         }
+        unitToValidate.accept(new PackageDeclarationVisitor(), validationGeneratedClass);
+        unitToValidate.accept(new MethodImplementorVisitor(), aClass);
 
-        String s = compilationUnit.getPackageDeclaration()
-                .map(PackageDeclaration::getNameAsString)
-                .orElse("");
-
-        return clone;
+        return validationGeneratedClass;
     }
 
     public static void generateDTOSinDirectory(String srcDirectory, String prefix, String outputDirectory) throws Exception {
