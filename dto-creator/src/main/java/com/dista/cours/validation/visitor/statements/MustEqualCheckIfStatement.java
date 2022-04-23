@@ -2,6 +2,7 @@ package com.dista.cours.validation.visitor.statements;
 
 
 import com.dista.cours.validation.visitor.expressions.EqualsMethodCallExpr;
+import com.dista.cours.validation.visitor.expressions.ObjMethodCallExpr;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.Expression;
@@ -17,11 +18,8 @@ public class MustEqualCheckIfStatement extends Statement {
     final IfStmt ifStmt;
 
     public MustEqualCheckIfStatement(Parameter parameter, String literal, MethodDeclaration methodDeclaration) {
-        MethodCallExpr methodCallExpr = new MethodCallExpr();
-        methodCallExpr.setScope(parameter.getNameAsExpression());
-        methodCallExpr.setName(methodDeclaration.getName());
-
-        EqualsMethodCallExpr equalsMethodCallExpr = new EqualsMethodCallExpr(new StringLiteralExpr(literal), methodCallExpr);
+        ObjMethodCallExpr callExpr = new ObjMethodCallExpr(parameter, methodDeclaration);
+        EqualsMethodCallExpr equalsMethodCallExpr = new EqualsMethodCallExpr(new StringLiteralExpr(literal), callExpr);
         Expression negated = new UnaryExpr(equalsMethodCallExpr, UnaryExpr.Operator.LOGICAL_COMPLEMENT);
         ifStmt = new IfStmt()
                 .setCondition(negated)

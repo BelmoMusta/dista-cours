@@ -26,7 +26,7 @@ public class MustEqualValidationAnnotationLookup extends VoidVisitorAdapter<Fiel
     public void visit(FieldDeclaration fieldDeclaration, FieldWrapper wrapper) {
         Map<String, MethodDeclaration> map = wrapper.getMap();
         for (AnnotationExpr annotation : fieldDeclaration.getAnnotations()) {
-            if (annotation.getNameAsString().equals("MustEqual")) {
+            if ("MustEqual".equals(annotation.getNameAsString())) {
                 List<StringLiteralExpr> value = annotation.findAll(StringLiteralExpr.class);
                 MethodDeclaration methodDeclaration = map.get(fieldDeclaration.getVariables().get(0).getNameAsString());
                 if (methodDeclaration != null) {

@@ -1,17 +1,20 @@
 package com.dista.cours.validation.visitor.expressions;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.visitor.GenericVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 
 
-public class EqualsMethodCallExpr extends Expression {
+public class ObjMethodCallExpr extends Expression {
     private final MethodCallExpr methodCallExpr;
 
-    public EqualsMethodCallExpr(Expression leftHand, Expression rightHand) {
-        methodCallExpr = new MethodCallExpr("equals", rightHand);
-        methodCallExpr.setScope(leftHand);
+    public ObjMethodCallExpr(Parameter caller, MethodDeclaration  methodDeclaration) {
+        methodCallExpr = new MethodCallExpr();
+        methodCallExpr.setScope(caller.getNameAsExpression());
+        methodCallExpr.setName(methodDeclaration.getName());
     }
 
     @Override
