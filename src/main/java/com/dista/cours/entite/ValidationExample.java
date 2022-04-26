@@ -4,13 +4,17 @@ package com.dista.cours.entite;
 import com.dista.cours.validation.annotation.MustEqual;
 import com.dista.cours.validation.annotation.NotNull;
 import com.dista.cours.validation.annotation.Validation;
-import lombok.Getter;
-import lombok.Setter;
 
-@Validation
-@Getter
-@Setter
+//@Validation
+//@Getter
+//@Setter
 public class ValidationExample {
+    @MustEqual("true")
+    boolean enabled;
+
+    @MustEqual("88")
+    private int age;
+
     @MustEqual("123")
     public String forced;
     @NotNull
@@ -41,7 +45,19 @@ public class ValidationExample {
     public void lol() {
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public String getForced() {
         return forced;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

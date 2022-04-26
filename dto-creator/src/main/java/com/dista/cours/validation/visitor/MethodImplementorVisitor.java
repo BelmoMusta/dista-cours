@@ -12,12 +12,12 @@ public class MethodImplementorVisitor extends VoidVisitorAdapter<ClassOrInterfac
 
     @Override
     public void visit(ClassOrInterfaceDeclaration n, ClassOrInterfaceDeclaration destination) {
-        MethodDeclaration method = destination.addMethod("validate", Modifier.PUBLIC);//  boolean validate(T objectToValidate);
+        MethodDeclaration method = destination.addMethod("validate", Modifier.PUBLIC);
         method.setType("boolean");
         Parameter parameter = new Parameter();
         String name = n.getNameAsString();
         parameter.setType(name);
-        parameter.setName("obj");
+        parameter.setName("p"+name);
         method.addParameter(parameter);
         method.addAnnotation(new MarkerAnnotationExpr("Override"));
         method.accept(new StatementsVisitor(), n);

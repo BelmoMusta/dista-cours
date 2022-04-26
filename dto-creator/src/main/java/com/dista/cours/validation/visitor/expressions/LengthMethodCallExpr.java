@@ -6,11 +6,12 @@ import com.github.javaparser.ast.visitor.GenericVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitor;
 
 
-public class EqualsMethodCallExpr extends Expression {
+public class LengthMethodCallExpr extends Expression {
     private final MethodCallExpr methodCallExpr;
 
-    public EqualsMethodCallExpr(Expression leftHand, Expression rightHand) {
-        methodCallExpr = new MethodCallExpr("java.util.Objects.equals", leftHand, rightHand);
+    public LengthMethodCallExpr(Expression rightHand) {
+        methodCallExpr = new MethodCallExpr("length"); // TODO arrays and collections
+        methodCallExpr.setScope(rightHand);
     }
 
     @Override

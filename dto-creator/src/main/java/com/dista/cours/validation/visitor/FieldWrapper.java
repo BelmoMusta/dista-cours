@@ -10,6 +10,7 @@ public class FieldWrapper {
     final Parameter parameter;
     final BlockStmt body;
     final Map<String, MethodDeclaration> map;
+    private boolean done;
 
     FieldWrapper(Parameter parameter, BlockStmt body, Map<String, MethodDeclaration> map) {
         this.parameter = parameter;
@@ -27,5 +28,13 @@ public class FieldWrapper {
 
     public Map<String, MethodDeclaration> getMap() {
         return map;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+    public boolean isDone() {
+        return done;
     }
 }

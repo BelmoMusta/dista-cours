@@ -3,6 +3,7 @@ package com.dista.cours.validation.visitor;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.nodeTypes.NodeWithName;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.GenericVisitorAdapter;
 
@@ -30,10 +31,14 @@ public class ValidatorClassVisitor extends GenericVisitorAdapter<ClassOrInterfac
 
     private String getTypeToValidate(ClassOrInterfaceDeclaration classOrInterfaceDeclaration) {
 
-
         String name = classOrInterfaceDeclaration.getNameAsString();
+        String fqn = classOrInterfaceDeclaration.findCompilationUnit()
+                .flatMap(CompilationUnit::getPackageDeclaration)
+                .map(NodeWithName::getNameAsString)
+                .map(p -> p + "." + name)
+                .orElse(name);
 
-        return "com.dista.cours.validation.api.Validator<" + name + ">";
+        return "com.dista.cours.validation.api.Validator<" + fqn + ">"; // todo
     }
 
 }
